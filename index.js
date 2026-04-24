@@ -1,9 +1,12 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/userdb";
+
 mongoose
-    .connect("mongodb://localhost:27017/userdb")
+    .connect(MONGO_URI)
     .then(() => console.log("connected to mongodb"))
     .catch(err => console.log(err));
 
